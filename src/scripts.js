@@ -24,7 +24,7 @@ const icon4Img = document.querySelector('.icon-4-img');
 const recipeNameBox = document.querySelector('.recipe-title-box');
 const recipePriceList = document.querySelector('.price-box');
 const recipeDetailsBox = document.querySelector('.recipe-box')
-
+const searchBar = document.querySelector('.search-bar')
 
 // ***** Event Listeners ***** //
 
@@ -33,6 +33,8 @@ window.addEventListener('load', loadNewUser);
 window.addEventListener('load', displayAllRecipeNames);
 allRecipesSection.addEventListener('click', viewRecipe);
 homeButton.addEventListener('click', showHomePage);
+searchBar.addEventListener('keyup', filterRecipeByTag);
+searchBar.addEventListener('keyup', filterRecipeByName);
 
 // ***** Global Variables ***** //
 
@@ -74,6 +76,7 @@ function displayAllRecipeNames() {
   });
 }
 
+
 function showHomePage() {
   hide(recipePage);
   show(homePage);
@@ -90,3 +93,18 @@ function viewRecipe(event) {
   recipePriceList.innerText = selectedRecipe[0].getCostofRecipe()
 
 }
+
+function filterRecipeByTag(){
+  const term = e.target.value.toLowerCase() 
+  const recipes = allRecipes.getElementByTagName(allRecipes.tags)
+  if(recipes.getIndexOf(term) != -1){
+    book
+  }
+  
+}
+function filterRecipeByName(name){
+  allRecipes.filter(name)
+}
+//created filter recipe by name function --> need refactor
+
+/// started search by tag function

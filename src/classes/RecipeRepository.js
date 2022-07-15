@@ -9,7 +9,7 @@ class RecipeRepository {
   }
 
   filterByName(name) {
-    let filteredRecipes = this.recipeData.filter(recipe => recipe.name === name);
+    let filteredRecipes = this.recipeData.filter(recipe => recipe.name.includes(name));
     return filteredRecipes;
   }
   // try reduce later for the extention using multiple parameters? Maybe use ternary operator

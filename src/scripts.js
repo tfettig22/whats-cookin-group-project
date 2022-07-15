@@ -26,16 +26,20 @@ const recipeNameBox = document.querySelector('.recipe-title-box');
 const recipePriceList = document.querySelector('.price-box');
 const recipeDetailsBox = document.querySelector('.recipe-box')
 const searchInput = document.querySelector('.search-bar');
+const searchValue = document.querySelector('.search-input');
+const tagSearch = document.querySelector('.tag-search')
+const nameSearch = document.querySelector('.name-search')
+
 
 
 // ***** Event Listeners ***** //
 
 window.addEventListener('load', updateMainPageRecipeIcons);
 window.addEventListener('load', loadNewUser);
-window.addEventListener('load', displayAllRecipeNames);
+window.addEventListener('load', displayAllNames);
 allRecipesSection.addEventListener('click', viewRecipe);
 homeButton.addEventListener('click', showHomePage);
-searchButton.addEventListener('keyup', filterRecipe);
+searchButton.addEventListener('click', filterRecipe);
 
 // ***** Global Variables ***** //
 
@@ -70,11 +74,16 @@ function updateMainPageRecipeIcons() {
   icon4Img.src = allRecipes[getRandomIndex(allRecipes)].image;
 }
 
-function displayAllRecipeNames() {
-  const allRecipeNames = allRecipes.map(recipe => recipe.name);
-  allRecipeNames.forEach(name => {
+function displayRecipeNames(recipeData) {
+  allRecipesSection.innerHTML = ''
+  const recipeNames = recipeData.map(recipe => recipe.name);
+  recipeNames.forEach(name => {
     allRecipesSection.innerHTML += `<p>${name}</p>`
   });
+}
+
+function displayAllNames() {
+  displayRecipeNames(recipeRepository.recipeData)
 }
 
 function showHomePage() {
@@ -93,22 +102,23 @@ function viewRecipe(event) {
   //add individual ingredient price functionality
 }
 
-function filterRecipe() {
-  filterRecipeByTag()
-  filterRecipeByName()
-  //show filtered view
-  //hide all recipes
+function filterRecipe(event) {
+  event.preventDefault()
+  if (tagSearch.checked) {
+    filterRecipeByTag(searchValue.value)
+  } else if (nameSearch.checked) {
+    filterRecipeByName(searchValue.value)
+  }
 }
 
-//These next two functions are not quite fleshed out yet
 function filterRecipeByTag(tag) {
-   const input = e.target.value.toLowerCase()
-
-  if(searchInput.value.includes(tag))
-  recipeRepository.filterbyTag(tag)
+  let input = tag.toLowerCase()
+  let filteredRecipes = recipeRepository.filterByTag(input)
+  displayRecipeNames(filteredRecipes)
 }
 
 function filterRecipeByName(name) {
-  if (searchInput.value.includes(name))
-  recipeRepository.filterbyTag(name)
+  // let input = name.toLowerCase();
+  let filteredRecipes = recipeRepository.filterByName(name)
+  displayRecipeNames(filteredRecipes)
 }

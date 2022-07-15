@@ -94,17 +94,19 @@ function viewRecipe(event) {
 
 }
 
-function filterRecipeByTag(){
-  const term = e.target.value.toLowerCase() 
-  const recipes = allRecipes.getElementByTagName(allRecipes.tags)
-  if(recipes.getIndexOf(term) != -1){
-    book
-  }
+// function filterRecipeByTag(){
+//   const term = e.target.value.toLowerCase() 
+//   const recipes = allRecipes.getElementByTagName(allRecipes.tags)
+//   if(recipes.getIndexOf(term) != -1){
+//     recipes.style.display = 'block';
+//   } else {
+//     recipes.style.display = 'none';
+//   }
   
-}
-function filterRecipeByName(name){
-  allRecipes.filter(name)
-}
+// }
+// function filterRecipeByName(name){
+//   allRecipes.filter(name)
+// }
 //created filter recipe by name function --> need refactor
 
 /// started search by tag function

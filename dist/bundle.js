@@ -5,4 +5,4 @@
   alert('hello')
   /******/
 })()
-  ;
+  ;got add .

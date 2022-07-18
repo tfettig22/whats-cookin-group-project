@@ -492,11 +492,11 @@ filter: drop-shadow(5px 10px 3px black);
         border: 1px solid black;
       }
 
-      .favorite-recipe-container :nth-child(2){
+      /* .favorite-recipe-container :nth-child(2){
         flex-direction: row;
         justify-self: center;
         align-self: center;
-      }
+      } */
 
       .favorite-recipe-title-wrapper,
       .user-pantry-title-wrapper{
@@ -515,7 +515,7 @@ filter: drop-shadow(5px 10px 3px black);
         overflow-y: scroll;
       }
 
-      .favorite-recipe-icon{
+      .favorite-recipe-icons{
         display: flex;
         justify-self: center;
         height: 125px;

@@ -5,13 +5,10 @@ class Pantry {
     getIngredientDetails(ingredientData) {
         const pantryIngredients = this.ingredientsInPantry.map(ingredient => {
             const foundIngredient = ingredientData.find(
-              data => data.id === ingredient.id
+              data => data.id === ingredient.ingredient
             );
-            console.log('found:', foundIngredient)
-            console.log('ingredient', ingredient)
-            console.log('this:', this.ingredientsInPantry)
             return {
-                'id': ingredient.id,
+                'id': ingredient.ingredient,
                 'name': foundIngredient.name,
                 'amount': ingredient.amount
             }
@@ -20,9 +17,21 @@ class Pantry {
          }
     };
 
-    // getMissingIngredients(recipeData, ingredientData) {
-
-    // }
+    getMissingIngredients(recipeData, ingredientData) {
+        const compareIngredients = this.ingredientsInPantry.map(ingredient => {
+            const recipeIngredients = recipeData.find(
+              data => data.id === ingredient.ingredient
+            );
+            return {
+                'id': ingredient.ingredient,
+                'name': foundIngredient.name,
+                'amount': ingredient.amount,
+                'recipeAmount': 
+            }
+          });
+          return compareIngredients
+         }
+    }
 
 
 

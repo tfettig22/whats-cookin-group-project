@@ -59,24 +59,24 @@ describe('Pantry', () => {
             ])
     })
 
-    // it.skip('should be told what ingredients are still needed for a recipe', () => {
-    //     expect(user1.pantry.getMissingIngredients(recipe1, userIngData)).to.deep.equal([
-    //     {
-    //         "id": 11297,
-    //         "name": "flat leaf parsley leaves",
-    //         "amount": 4,
-    //         "recipeAmount": ,
-    //         "amountNeeded": ,
-    //       },
-    //       {
-    //         "id": 1082047,
-    //         "name": "kosher salt",
-    //         "amount": 10,
-    //         "recipeAmount": ,
-    //         "amountNeeded": ,
-    //       }
-    //     ])
-    // })
+    it('should be told what ingredients are still needed for a recipe', () => {
+        expect(pantry1.getMissingIngredients(recipe1, userIngData)).to.deep.equal([
+        {
+            "id": 11297,
+            "name": "flat leaf parsley leaves",
+            "amount": 4,
+            "recipeAmount": ,
+            "amountNeeded": ,
+          },
+          {
+            "id": 1082047,
+            "name": "kosher salt",
+            "amount": 10,
+            "recipeAmount": ,
+            "amountNeeded": ,
+          }
+        ])
+    })
 
     // it.skip('should check if pantry has enough ingredients to cook a recipe', () => {
     //     expect(user1.pantry.canCookRecipe(recipe1, userIngData)).to.equal(false)

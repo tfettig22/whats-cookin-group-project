@@ -128,6 +128,10 @@
         <section class="user-info-pantry-container" id="userInfoPantryContainer">
           <section class="user-pantry-title-wrapper">
             <p class="user-pantry-title">User's Pantry Ingredients</p>
+            <form class="get-ing-id">
+              <input class= "get-ing-id2" type="text" id="ingName" name="ingredientName" value="">
+              <input type="submit" value="Submit">
+            </form>
           </section>
          <section class="pantry-ingredient-wrapper" id="pantryIngredientWrapper3">
           <section class="pantry-ingredients hidden">
@@ -136,9 +140,18 @@
             <section class="can-cook-image">3</section>
           </section>
         </section>
+        <form class="add-pantry-ingredient-form hidden" id="addIngredientForm"  method="post">
+            <!-- <h2> Add Ingredient</h2> -->
+          <label for="ingredient name">Ingredient Name:</label>
+          <input type="text" id="IngredientName" name="ingredient_name">
+          <label for="ingredient quantity">Ingredient Qty:</label>
+          <input type="number" id="IngredientQuantity" name="ingredient_quantity">
+          <button class="add-ingredient-btn" id="addIngBtn">Add to Pantry</button>
+        </form>
          </section>
         </section>
-      </Section>
+        </section>
+      </section>
       </section>
     </section>
     <aside class="home-recipe-sidebar" id="homeRecipeBar">

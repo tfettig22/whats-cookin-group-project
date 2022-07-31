@@ -47,6 +47,11 @@ const sideBarTitle = document.querySelector('.side-bar-title-wrapper');
 const userItemQuantities = document.querySelector('.user-item-quantities');
 const userItemName = document.querySelector('.pantry-item-name');
 const userPantryContainer = document.querySelector('.pantry-ingredients');
+const getIngId = document.querySelector('.get-ing-id')
+const getIngId2 = document.querySelector('.get-ing-id2')
+const ingredientForm = document.querySelector('.add-pantry-ingredient-form');
+const addIngBtn = document.querySelector('.add-ingredient-btn')
+const ingredientsSection = document.querySelector('.pantry-ingredients')
 
 // ***** Event Listeners ***** //
 window.addEventListener('load', getAllData);
@@ -80,6 +85,7 @@ favoritePageBtn.addEventListener('keypress', function(event) {
 addFavoriteBtn.addEventListener('click', addToFavorites);
 removeFavFiltersBtn.addEventListener('click', showFavoritesPage);
 removeFiltersBtn.addEventListener('click', displayAllNames);
+getIngId.addEventListener('submit', getIngredientId)
 
 // ***** Global Variables ***** //
 let ingredientData;
@@ -104,6 +110,55 @@ getAllData().then(responses => {
   updateMainPageRecipeIcons();
   displayAllNames();
 });
+
+
+//~~~~~~~~~Post Request~~~~~~~~~~~~~~
+const addNewIngredient = (dataType, newIngredient) => {
+  fetch(`http://localhost:3001/api/v1/${dataType}`, {
+    method: "POST",
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(newIngredient)
+  })
+  .then(response => {
+    console.log("Hello,POST, response" .json())
+    if(!response.ok){
+      throw new Error(response.statusText)
+     } else {
+       return response.json()
+     }   
+   })
+   .then(ingredient => addIngredientToPage(ingredient))
+   .catch(err => err  (alert(`MUST FILL OUT ALL BOXES!!!`)))// What can be done better here?
+ }
+
+ getAllData(); //from fetch all data function 
+ const addIngredientToPage = ingredients => {
+  selectedRecipe.getIngredientNames().forEach(ingredient => {
+    addIngredientsToPage(ingredient);
+   });
+ }
+ 
+ const addIngredientsToPage = ingredient => {
+  ingredientsSection.innerHTML += `<p>${ingredient.name}</p>`;
+ }
+ 
+
+// ~~~~~~~~~~~~~~~~~~Add Ingredient to Page START~~~~~~~~~~~~~~~~~
+ingredientForm.addEventListener('addIngBtn', (e) => {
+  e.preventDefault();
+  const formData = new FormData(e.target);
+  const newIngredient = {
+    id: ingredientsSection.childElementCount + 1,
+    name: formData.get('ingredient_name'),
+    quantity: formData.get('ingredient_quantity'),
+  };
+  addNewIngredient(newIngredient);
+  e.target.reset();
+});
+
+// ~~~~~~~~~~~~~~~~~~Add Ingredient to Page END ~~~~~~~~~~~~~~~~~
+
+
 
 function getRandomIndex(array) {
   return Math.floor(Math.random() * array.length);
@@ -400,3 +455,19 @@ function displayPantryIngredients() {
     userItemName.innerHTML += `<p class = 'recipe-ingredients'> ${pantryIngredient.name}</p>`
   })
 }
+function convertIngNameToId(name) {
+  ingredientData.forEach(ing => {
+    if (ing.name === name) {
+      getIngId2.value = ing.id
+    }
+  })
+  if (ingredientData.every(ing => ing.name !== name)) {
+    getIngId2.value = 'Ingredient not found'
+  }
+}
+
+function getIngredientId(event) {
+  event.preventDefault(event)
+  convertIngNameToId(getIngId2.value)
+}
+  

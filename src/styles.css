@@ -467,7 +467,9 @@ li {
   color: white;
 }
 
-.remove-filters-button-fav {
+.remove-filters-button-fav,
+.remove-filters-button,
+.add-ingredient-btn {
   background-color: black;
   color: white;
   margin-left: 3%;
@@ -483,11 +485,6 @@ li {
   overflow: scroll;
 }
 
-.remove-filters-button {
-  margin-left: 3%;
-  background-color: black;
-  color: white;
-}
 
 .remove-filters-button:hover {
   background-color: rgb(42, 40, 40);
@@ -643,10 +640,26 @@ li {
   font-size: 12px;
   display: grid;
   grid-template-columns: 30% 50% 20%;
+  grid-template-rows: 20%;
   margin: 0;
   padding: 0;
   border: 1px solid blue;
   overflow-y: scroll;
+}
+
+/* ~~~~~~~~~~~~~~~~~~~add ingredient form~~~~~~~~~~~ */
+
+.add-pantry-ingredient-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  justify-self: center;
+  border-radius: 20px;
+  background-color:(linear-gradient(#222323, #8d8f90));
+  padding: 2px 20px 20px 20px;
+  margin: 0;
+  width: 50%;
+  border: 1px solid blue;
 }
 
 

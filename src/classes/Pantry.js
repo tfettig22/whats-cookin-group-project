@@ -1,6 +1,10 @@
 class Pantry {
   constructor(pantry) {
-    this.ingredientsInPantry = pantry || [];
+    let copyPantry = undefined;
+    if(pantry) {
+      copyPantry = JSON.parse(JSON.stringify(pantry)) 
+    }
+    this.ingredientsInPantry = copyPantry || [];
   };
 
   getIngredientDetails(ingredientData) {
@@ -11,7 +15,7 @@ class Pantry {
       return {
             'id': ingredient.ingredient,
             'name': foundIngredient.name,
-            'amount': ingredient.amount
+            'amount': ingredient.amount,
             }
     });
       return pantryIngredients;

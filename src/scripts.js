@@ -2,7 +2,6 @@ import './styles.css';
 import { getAllData } from './apiCalls';
 import RecipeRepository from './classes/RecipeRepository';
 import Recipe from './classes/Recipe';
-import Ingredient from './classes/Ingredient';
 import User from './classes/User';
 
 // ***** Query Selectors ***** //
@@ -45,6 +44,9 @@ const nameRadioBtn = document.querySelector('.name-search');
 const removeFiltersBtn = document.querySelector('.remove-filters-button');
 const tagRadioBtn = document.querySelector('.tag-search');
 const sideBarTitle = document.querySelector('.side-bar-title-wrapper');
+const userItemQuantities = document.querySelector('.user-item-quantities');
+const userItemName = document.querySelector('.pantry-item-name');
+const userPantryContainer = document.querySelector('.pantry-ingredients');
 
 // ***** Event Listeners ***** //
 window.addEventListener('load', getAllData);
@@ -78,9 +80,6 @@ favoritePageBtn.addEventListener('keypress', function(event) {
 addFavoriteBtn.addEventListener('click', addToFavorites);
 removeFavFiltersBtn.addEventListener('click', showFavoritesPage);
 removeFiltersBtn.addEventListener('click', displayAllNames);
-
-
-
 
 // ***** Global Variables ***** //
 let ingredientData;
@@ -186,6 +185,8 @@ function showFavoritesPage() {
   show(favoritesPage);
   show(searchFavoritesContainer);
   showFavoriteRecipeImages(user.recipesToCook);
+  show(userPantryContainer);
+  displayPantryIngredients();
 }
 
 function viewRecipe(event) {
@@ -377,6 +378,7 @@ function showFavoriteRecipeImages(recipes) {
   <p class="icon-text">${recipe.name}</p>
   <img class="favorite-recipe-images icon" src=${recipe.image} id=${recipe.id} tabindex=0>
   <button class="remove-from-favorites-btn" id=${recipe.id}>delete</button>
+  <button class="cook-me-btn" id = ${recipe.id}>cook me!</button>
   </section>`;
   });
 }
@@ -387,4 +389,14 @@ function removeFromFavorites(event) {
     user.removeRecipesToCook(parseInt(recipe.id));
   }
   showFavoriteRecipeImages(user.recipesToCook);
+}
+
+function displayPantryIngredients() {
+  userItemQuantities.innerHTML = ''
+  userItemName.innerHTML = ''
+  let pantryIngredients = user.pantry.getIngredientDetails(ingredientData)
+  pantryIngredients.forEach(pantryIngredient => {
+    userItemQuantities.innerHTML += `<p class = 'ingredient-quantities'> ${pantryIngredient.amount}</p>`
+    userItemName.innerHTML += `<p class = 'recipe-ingredients'> ${pantryIngredient.name}</p>`
+  })
 }

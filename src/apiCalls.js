@@ -12,4 +12,5 @@ const getAllData = () => {
     return result;
   }
 
+ 
 export { getAllData }

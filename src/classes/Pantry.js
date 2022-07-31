@@ -1,6 +1,6 @@
 class Pantry {
   constructor(pantry) {
-    this.ingredientsInPantry = pantry || [];
+    this.ingredientsInPantry = JSON.parse(JSON.stringify(pantry));
   };
 
   getIngredientDetails(ingredientData) {
@@ -69,6 +69,33 @@ class Pantry {
     })
     return amountNeeded
   }
+
+  cookRecipe(recipe) {
+    if (this.checkIfUserCanCookRecipe(recipe)) {
+      let requiredIngredients = this.findRequiredIngredients(recipe)
+      requiredIngredients.forEach(ingredient => {
+        this.ingredientsInPantry.forEach(ing => {
+          if (ing.ingredient === ingredient.id) {
+            ing.amount -= ingredient.amount
+          }
+        })
+      })
+    } else {
+      return 'Cannot cook this recipe yet, you are missing some ingredients.'
+    }
+  }
+
+  addIngredient(id, amount) {
+    this.ingredientsInPantry.forEach(ing => {
+      if (id === ing.ingredient) {
+        ing.amount += amount
+      }
+    })
+    if (this.ingredientsInPantry.every(ing => ing.ingredient !== id)) {
+      this.ingredientsInPantry.push({ingredient: id, amount: amount})
+    }
+  }
+
 };
 
 

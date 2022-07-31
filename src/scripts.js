@@ -45,6 +45,8 @@ const nameRadioBtn = document.querySelector('.name-search');
 const removeFiltersBtn = document.querySelector('.remove-filters-button');
 const tagRadioBtn = document.querySelector('.tag-search');
 const sideBarTitle = document.querySelector('.side-bar-title-wrapper');
+const getIngId = document.querySelector('.get-ing-id')
+const getIngId2 = document.querySelector('.get-ing-id2')
 const ingredientForm = document.querySelector('.add-pantry-ingredient-form');
 const addIngBtn = document.querySelector('.add-ingredient-btn')
 const ingredientsSection = document.querySelector('.pantry-ingredients')
@@ -81,9 +83,7 @@ favoritePageBtn.addEventListener('keypress', function(event) {
 addFavoriteBtn.addEventListener('click', addToFavorites);
 removeFavFiltersBtn.addEventListener('click', showFavoritesPage);
 removeFiltersBtn.addEventListener('click', displayAllNames);
-
-
-
+getIngId.addEventListener('submit', getIngredientId)
 
 // ***** Global Variables ***** //
 let ingredientData;
@@ -440,3 +440,21 @@ function removeFromFavorites(event) {
   }
   showFavoriteRecipeImages(user.recipesToCook);
 }
+
+function convertIngNameToId(name) {
+  ingredientData.forEach(ing => {
+    if (ing.name === name) {
+      getIngId2.value = ing.id
+    }
+  })
+  console.log(ingredientData.every(ing => ing.name !== name))
+  if (ingredientData.every(ing => ing.name !== name)) {
+    getIngId2.value = 'Ingredient not found'
+  }
+}
+
+function getIngredientId(event) {
+  event.preventDefault(event)
+  convertIngNameToId(getIngId2.value)
+}
+  

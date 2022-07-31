@@ -282,24 +282,24 @@ function filterRecipeByTag(tag) {
     hide(sideBarTitle)
     recipeSidebarList.innerHTML = 
     `<p class="tag-names">No recipes found, try one of these tags: </p> 
-    <ul> 
-      <br> <li class="tag"> Antipasti </li>
-      <br> <li class="tag"> Starter </li>
-      <br> <li class="tag"> Snack </li>
-      <br> <li class="tag"> Appetizer </li>
-      <br> <li class="tag"> Antipasto </li>
-      <br> <li class="tag"> Hor d'oeuvre </li>
-      <br> <li class="tag"> Lunch </li>
-      <br> <li class="tag"> Main course </li>
-      <br> <li class="tag"> Main dish </li>
-      <br> <li class="tag"> Dinner </li>
-      <br> <li class="tag"> Side dish </li>
-      <br> <li class="tag"> Salad </li>
-      <br> <li class="tag"> Condiment </li>
-      <br> <li class="tag"> Dip </li>
-      <br> <li class="tag"> Spread </li>
-      <br> <li class="tag"> Sauce </li>
-    </ul>`;
+     <ul> 
+        <br> <li class="tag"> Antipasti </li>
+        <br> <li class="tag"> Starter </li>
+        <br> <li class="tag"> Snack </li>
+        <br> <li class="tag"> Appetizer </li>
+        <br> <li class="tag"> Antipasto </li>
+        <br> <li class="tag"> Hor d'oeuvre </li>
+        <br> <li class="tag"> Lunch </li>
+        <br> <li class="tag"> Main course </li>
+        <br> <li class="tag"> Main dish </li>
+        <br> <li class="tag"> Dinner </li>
+        <br> <li class="tag"> Side dish </li>
+        <br> <li class="tag"> Salad </li>
+        <br> <li class="tag"> Condiment </li>
+        <br> <li class="tag"> Dip </li>
+        <br> <li class="tag"> Spread </li>
+        <br> <li class="tag"> Sauce </li>
+      </ul>`;
   }
 }
 

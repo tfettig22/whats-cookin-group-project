@@ -18,12 +18,12 @@ describe('Pantry', () => {
     let user2;
     let pantry1; 
     let pantry2;
-    let emptyPantry;
+    // let emptyPantry;
 
     beforeEach(() => {
      user1 = new User(testUserData[0]);
      user2 = new User(testUserData[2]);
-     emptyPantry = new Pantry();
+    //  emptyPantry = new Pantry();
      pantry1 = new Pantry(user1.pantry);
      pantry2 = new Pantry(user2.pantry);
      recipe1 = new Recipe(testRecipeData[0], testIngData);
@@ -35,9 +35,9 @@ describe('Pantry', () => {
         expect(pantry1).to.be.an.instanceOf(Pantry);
     });
 
-    it('should start empty', () => {
-        expect(emptyPantry.ingredientsInPantry).to.deep.equal([]);
-    });
+    // it('should start empty', () => {
+    //     expect(emptyPantry.ingredientsInPantry).to.deep.equal([]);
+    // });
 
     it('should take in a user pantry', () => {
         expect(pantry1.ingredientsInPantry).to.deep.equal(user1.pantry);
@@ -113,5 +113,34 @@ describe('Pantry', () => {
     it('should return no missing amounts if user has all required ingredients', () => {
       expect(pantry1.getIngredientAmountsNeeded(recipe1)).to.deep.equal([]);
     });
+
+    it('should have a method to cook a recipe and remove the required ingredients from the user\'s pantry', () => {
+      pantry1.cookRecipe(recipe1);
+      expect(pantry1.ingredientsInPantry).to.deep.equal([
+        { ingredient: 11297, amount: 4 },
+        { ingredient: 1082047, amount: 10 },
+        { ingredient: 20081, amount: 3.5 },
+        { ingredient: 18372, amount: 8.5 },
+        { ingredient: 1123, amount: 7 }
+      ]);
+    });
+
+    it('should not be able to cook a recipe if the user does not have all the required ingredients', () => {
+      expect(pantry1.cookRecipe(recipe2)).to.equal('Cannot cook this recipe yet, you are missing some ingredients.');
+    });
+
+    it('should have a method to add a certain amount of an ingredient to the pantry by id', () => {
+      pantry1.addIngredient(11297, 5)
+      pantry1.addIngredient(1123, 3)
+      pantry1.addIngredient(14, 1000)
+      expect(pantry1.ingredientsInPantry).to.deep.equal([
+        { ingredient: 11297, amount: 9 },
+        { ingredient: 1082047, amount: 10 },
+        { ingredient: 20081, amount: 5 },
+        { ingredient: 18372, amount: 9 },
+        { ingredient: 1123, amount: 11 },
+        { ingredient: 14, amount: 1000 }
+      ])
+    })
 
 });

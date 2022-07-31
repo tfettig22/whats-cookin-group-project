@@ -45,6 +45,8 @@ const nameRadioBtn = document.querySelector('.name-search');
 const removeFiltersBtn = document.querySelector('.remove-filters-button');
 const tagRadioBtn = document.querySelector('.tag-search');
 const sideBarTitle = document.querySelector('.side-bar-title-wrapper');
+const getIngId = document.querySelector('.get-ing-id')
+const getIngId2 = document.querySelector('.get-ing-id2')
 
 // ***** Event Listeners ***** //
 window.addEventListener('load', getAllData);
@@ -78,9 +80,7 @@ favoritePageBtn.addEventListener('keypress', function(event) {
 addFavoriteBtn.addEventListener('click', addToFavorites);
 removeFavFiltersBtn.addEventListener('click', showFavoritesPage);
 removeFiltersBtn.addEventListener('click', displayAllNames);
-
-
-
+getIngId.addEventListener('submit', getIngredientId)
 
 // ***** Global Variables ***** //
 let ingredientData;
@@ -388,3 +388,17 @@ function removeFromFavorites(event) {
   }
   showFavoriteRecipeImages(user.recipesToCook);
 }
+
+function convertIngNameToId(name) {
+  ingredientData.forEach(ing => {
+    if (ing.name === name) {
+      getIngId2.value = ing.id
+    }
+  })
+}
+
+function getIngredientId(event) {
+  event.preventDefault(event)
+  convertIngNameToId(getIngId2.value)
+}
+  

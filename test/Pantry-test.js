@@ -18,14 +18,12 @@ describe('Pantry', () => {
     let user2;
     let pantry1; 
     let pantry2;
-    // let emptyPantry;
 
     beforeEach(() => {
      user1 = new User(testUserData[0]);
      user2 = new User(testUserData[2]);
-    //  emptyPantry = new Pantry();
-     pantry1 = new Pantry(user1.pantry);
-     pantry2 = new Pantry(user2.pantry);
+     pantry1 = user1.pantry
+     pantry2 = user2.pantry
      recipe1 = new Recipe(testRecipeData[0], testIngData);
      recipe2 = new Recipe(testRecipeData[1], testIngData);
      recipe3 = new Recipe(testRecipeData[3], testIngData);
@@ -35,12 +33,8 @@ describe('Pantry', () => {
         expect(pantry1).to.be.an.instanceOf(Pantry);
     });
 
-    // it('should start empty', () => {
-    //     expect(emptyPantry.ingredientsInPantry).to.deep.equal([]);
-    // });
-
     it('should take in a user pantry', () => {
-        expect(pantry1.ingredientsInPantry).to.deep.equal(user1.pantry);
+        expect(pantry1.ingredientsInPantry).to.deep.equal(testUserData[0].pantry);
     });
 
     it('should get the details of all the ingredients in the pantry', () => {

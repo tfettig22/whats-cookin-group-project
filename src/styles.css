@@ -593,12 +593,12 @@ li {
   margin-bottom: 3%;
 }
 
-.remove-from-favorites-btn {
+.remove-from-favorites-btn, .cook-me-btn {
   display: flex;
   justify-self: center;
   align-self: center;
   justify-content: center;
-  width: 50%;
+  width: 35%;
   height: 5%;
   padding: 0;
   margin-top:10%;

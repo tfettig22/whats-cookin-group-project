@@ -11,7 +11,7 @@ class Pantry {
       return {
             'id': ingredient.ingredient,
             'name': foundIngredient.name,
-            'amount': ingredient.amount
+            'amount': ingredient.amount,
             }
     });
       return pantryIngredients;

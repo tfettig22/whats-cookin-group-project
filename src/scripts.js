@@ -395,6 +395,10 @@ function convertIngNameToId(name) {
       getIngId2.value = ing.id
     }
   })
+  console.log(ingredientData.every(ing => ing.name !== name))
+  if (ingredientData.every(ing => ing.name !== name)) {
+    getIngId2.value = 'Ingredient not found'
+  }
 }
 
 function getIngredientId(event) {

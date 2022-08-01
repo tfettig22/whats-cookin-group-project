@@ -144,7 +144,7 @@ const addNewIngredient = (newIngredient) => {
   });
  }
 
-const makeNewIngredientToPost = (event) => {
+function makeNewIngredientToPost(event) {
   event.preventDefault();
   newIngredientToPost = { userID: user.id,
                           ingredientID: parseFloat(ingIdInput.value),

@@ -430,11 +430,14 @@ function showFavoriteRecipeImages(recipes) {
   favoriteRecipeImages.innerHTML = '';
   recipes.forEach(recipe => {
   favoriteRecipeImages.innerHTML +=
-  `<section class="favorite-recipe-icons">
-  <p class="icon-text">${recipe.name}</p>
-  <img class="favorite-recipe-images icon" src=${recipe.image} id=${recipe.id} tabindex=0>
-  <button class="remove-from-favorites-btn" id=${recipe.id}>delete</button>
-  <button class="cook-me-btn" id = ${recipe.id}>cook me!</button>
+  `
+  <section class="favorite-recipe-icons">
+    <p class="icon-text">${recipe.name}</p>
+    <img class="favorite-recipe-images icon" src=${recipe.image} id=${recipe.id} tabindex=0>
+    <section class= "button-container"> 
+    <button class="cook-me-btn" id = ${recipe.id}>cook me!</button> 
+    <button class="remove-from-favorites-btn" id=${recipe.id}>delete</button>
+    </section>
   </section>`;
   });
 }

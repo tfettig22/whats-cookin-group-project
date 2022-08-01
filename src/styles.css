@@ -561,7 +561,7 @@ li {
   display: flex;
   flex-direction: column;
   justify-self: center;
-  height: 320px;
+  height: 290px;
   width: 200px;
   border-radius: 10px;
   margin-left: 1%;
@@ -595,22 +595,25 @@ li {
   margin-bottom: 3%;
 }
 
-.remove-from-favorites-btn, .cook-me-btn {
+.button-container {
   display: flex;
-  justify-self: center;
-  align-self: center;
+  flex-direction: row;
   justify-content: center;
+}
+
+.remove-from-favorites-btn, .cook-me-btn {
+  text-align: center;
   width: 35%;
-  height: 5%;
-  padding: 0;
-  margin-top:10%;
+  margin: 7%;
   font-size: 10px;
 }
+
 
 .user-pantry-title-wrapper{
   display: flex;
   justify-content: center;
   align-items: center;
+  justify-self: center;
   width: 100%;
   height: 20%;
 }

@@ -44,13 +44,16 @@ const nameRadioBtn = document.querySelector('.name-search');
 const removeFiltersBtn = document.querySelector('.remove-filters-button');
 const tagRadioBtn = document.querySelector('.tag-search');
 const sideBarTitle = document.querySelector('.side-bar-title-wrapper');
-const userItemQuantities = document.querySelector('.user-item-quantities');
-const userItemName = document.querySelector('.pantry-item-name');
+// const userItemQuantities = document.querySelector('.user-item-quantities');
+// const userItemName = document.querySelector('.pantry-item-name');
 const userPantryContainer = document.querySelector('.pantry-ingredients');
-const getIngId = document.querySelector('.get-ing-id')
-const getIngId2 = document.querySelector('.get-ing-id2')
+const convertToId = document.querySelector('.convert-to-id');
+const getIngId2 = document.querySelector('.get-ing-id2');
 const ingredientForm = document.querySelector('.add-pantry-ingredient-form');
 const addIngBtn = document.querySelector('.add-ingredient-btn');
+const goToFormButton = document.querySelector('.go-to-form-button');
+const userPantryIngredients = document.querySelector('.user-info-pantry-container');
+const ingIdInput = document.querySelector('.ingredient-id-input');
 const pantryTitle = document.querySelector('.user-pantry-title');
 
 // ***** Event Listeners ***** //
@@ -85,7 +88,8 @@ favoritePageBtn.addEventListener('keypress', function(event) {
 addFavoriteBtn.addEventListener('click', addToFavorites);
 removeFavFiltersBtn.addEventListener('click', showFavoritesPage);
 removeFiltersBtn.addEventListener('click', displayAllNames);
-getIngId.addEventListener('submit', getIngredientId)
+convertToId.addEventListener('click', getIngredientId);
+goToFormButton.addEventListener('click', goToFormView);
 
 // ***** Global Variables ***** //
 let ingredientData;
@@ -146,17 +150,17 @@ const addNewIngredient = (dataType, newIngredient) => {
  
 
 // ~~~~~~~~~~~~~~~~~~Add Ingredient to Page START~~~~~~~~~~~~~~~~~
-ingredientForm.addEventListener('addIngBtn', (e) => {
-  e.preventDefault();
-  const formData = new FormData(e.target);
-  const newIngredient = {
-    id: ingredientsSection.childElementCount + 1,
-    name: formData.get('ingredient_name'),
-    quantity: formData.get('ingredient_quantity'),
-  };
-  addNewIngredient(newIngredient);
-  e.target.reset();
-});
+// ingredientForm.addEventListener('addIngBtn', (e) => {
+//   e.preventDefault();
+//   const formData = new FormData(e.target);
+//   const newIngredient = {
+//     id: ingredientsSection.childElementCount + 1,
+//     name: formData.get('ingredient_name'),
+//     quantity: formData.get('ingredient_quantity'),
+//   };
+//   addNewIngredient(newIngredient);
+//   e.target.reset();
+// });
 
 // ~~~~~~~~~~~~~~~~~~Add Ingredient to Page END ~~~~~~~~~~~~~~~~~
 
@@ -239,6 +243,8 @@ function showFavoritesPage() {
   hide(homePage);
   hide(searchContainer);
   hide(recipePage);
+  hide(ingredientForm)
+  show(userPantryIngredients)
   show(favoritesPage);
   show(searchFavoritesContainer);
   showFavoriteRecipeImages(user.recipesToCook);
@@ -465,7 +471,7 @@ function displayPantryIngredients() {
 function convertIngNameToId(name) {
   ingredientData.forEach(ing => {
     if (ing.name === name) {
-      getIngId2.value = ing.id
+      ingIdInput.value = ing.id
     }
   })
   if (ingredientData.every(ing => ing.name !== name)) {
@@ -478,6 +484,11 @@ function getIngredientId(event) {
   convertIngNameToId(getIngId2.value)
 }
 
+function goToFormView() {
+  hide(userPantryIngredients)
+  show(ingredientForm)
+}
+  
 function cookRecipe(event) {
   let selectedRecipe;
   allRecipes.forEach(recipe => {

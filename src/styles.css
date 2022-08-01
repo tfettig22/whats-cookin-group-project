@@ -469,10 +469,16 @@ li {
 
 .remove-filters-button-fav,
 .remove-filters-button,
-.add-ingredient-btn {
+.add-ingredient-btn,
+.convert-to-id {
   background-color: black;
   color: white;
   margin-left: 3%;
+}
+
+.convert-to-id,
+.add-ingredient-btn {
+  margin: 5px 0px 10px 0px;
 }
 
 .fav-container-lower-wrapper {
@@ -615,17 +621,11 @@ li {
   font-family: 'Edu TAS Beginner';
   font-size: 25pt;
   margin: 0%;
-  /* border: 1px solid blue; */
 }
-/* 
-.pantry-ingredient-wrapper {
-  display: flex;
-  align-self: center;
-  flex-wrap: wrap;
-  height: 80%;
-  width: 95%;
-  border: 1px solid rgb(255, 0, 191);
-} */
+
+.add-ing-title {
+  margin-bottom: 10px;
+}
 
 .pantry-items {
   display: flex;
@@ -642,8 +642,11 @@ li {
   width: 98%;
   margin: 1px 10px 5px 10px;
   flex-wrap: wrap;
-  border: 1px solid rgb(3, 220, 35);
   overflow: scroll;
+}
+
+.go-to-form-button {
+  margin: 5px 0px 0px 10px;
 }
 
 /* ~~~~~~~~~~~~~~~~~~~add ingredient form~~~~~~~~~~~ */
@@ -653,11 +656,10 @@ li {
   flex-direction: column;
   justify-content: center;
   justify-self: center;
-  border-radius: 20px;
-  background-color:(linear-gradient(#222323, #8d8f90));
+  border-radius: 10px;
   padding: 2px 20px 20px 20px;
   margin: 0;
-  height: 150px;
+  height: 250px;
   width: 200px;
   border: 1px solid grey;
   filter: drop-shadow(1px 2px 2px grey)

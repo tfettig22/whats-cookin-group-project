@@ -124,24 +124,19 @@
             <section class="fav-container-lower-wrapper"></section>
         </section>
         <section class="user-info-pantry-container" id="userInfoPantryContainer">
-          <section class="user-pantry-title-wrapper hidden">
+          <section class="user-pantry-title-wrapper">
             <p class="user-pantry-title">User's Pantry Ingredients</p>
-            <form class="get-ing-id">
-              <input class= "get-ing-id2" type="text" id="ingName" name="ingredientName" value="">
-              <input type="submit" value="Submit">
-            </form>
+            <button class="go-to-form-button">Add Ingredient</button>
           </section>
-         <!-- <section class="pantry-ingredient-wrapper" id="pantryIngredientWrapper3"> -->
-          <section class="pantry-ingredients hidden">
-            <!-- <section class="user-item-quantities">1</section>
-            <section class="pantry-item-name">2</section>
-            <section class="can-cook-image">3</section> -->
-          </section>
+          <section class="pantry-ingredients hidden"></section>
         </section>
-        <form class="add-pantry-ingredient-form" id="addIngredientForm"  method="post">
+        <form class="add-pantry-ingredient-form hidden" id="addIngredientForm"  method="post">
           <p class="add-ing-title"> Add Ingredient</p>
           <label for="ingredient name">Ingredient Name:</label>
-          <input type="text" id="IngredientName" name="ingredient_name">
+          <input class= "get-ing-id2" type="text" id="ingName" name="ingredientName" value="">
+          <button class="convert-to-id">Convert to ID</button>
+          <label for="ingredient name">Ingredient ID:</label>
+          <input class="ingredient-id-input" type="text" id="IngredientId" name="ingredient_id">
           <label for="ingredient quantity">Ingredient Qty:</label>
           <input type="number" id="IngredientQuantity" name="ingredient_quantity">
           <button class="add-ingredient-btn" id="addIngBtn">Add to Pantry</button>

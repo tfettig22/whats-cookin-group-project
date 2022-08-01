@@ -40,38 +40,31 @@ class Pantry {
     return requiredIngredients.every(ingredient => availableIngredients.includes(ingredient.id));
   };
 
-  getMissingIngredients(recipe) {
+  getMissingIngredients(recipe, ingredientData) {
     let requiredIngredients = this.findRequiredIngredients(recipe);
-    let getMissingIngredients = [];
-      requiredIngredients.forEach(item => {
-        let found = false;
-        this.ingredientsInPantry.find(ing => {
-          if (item.id === ing.ingredient) {
-            found = true;
-          }   
-        })
-          if (found === false) {
-            getMissingIngredients.push(item);
-          }
-      })
-    return getMissingIngredients;
+    let missingIngredients = [];
+    requiredIngredients.forEach(item => {
+      let pantryIngredient = this.ingredientsInPantry.find(ing => item.id === ing.ingredient);
+      if (!pantryIngredient) {
+        let diffItem = {
+          id: item.id,
+          name: ingredientData.find(ingData => ingData.id === item.id).name,
+          amount: item.amount
+        }
+        missingIngredients.push(diffItem);
+      } else if (pantryIngredient.amount < item.amount) {
+        let diffItem = {
+          id: item.id,
+          name: ingredientData.find(ingData => ingData.id === item.id).name,
+          amount: item.amount - pantryIngredient.amount
+        }
+        missingIngredients.push(diffItem);
+      }
+    })
+    return missingIngredients;
   };
 
-  getIngredientAmountsNeeded(recipe) {
-    let requiredIngredients = this.findRequiredIngredients(recipe);
-    let amountNeeded = [];
-    requiredIngredients.forEach(ingredient => {
-      this.ingredientsInPantry.forEach(ing => {
-        if ((ing.ingredient === ingredient.id) && (ing.amount < ingredient.amount)) {
-          amountNeeded.push({id : ingredient.id, amount: (ingredient.amount - ing.amount)})
-        }
-      })
-    })
-    return amountNeeded
-  }
-
   cookRecipe(recipe) {
-    if (this.checkIfUserCanCookRecipe(recipe)) {
       let requiredIngredients = this.findRequiredIngredients(recipe)
       requiredIngredients.forEach(ingredient => {
         this.ingredientsInPantry.forEach(ing => {
@@ -80,9 +73,6 @@ class Pantry {
           }
         })
       })
-    } else {
-      return 'Cannot cook this recipe yet, you are missing some ingredients.'
-    }
   }
 
   addIngredient(id, amount) {

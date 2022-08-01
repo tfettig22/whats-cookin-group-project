@@ -51,7 +51,6 @@ const getIngId = document.querySelector('.get-ing-id')
 const getIngId2 = document.querySelector('.get-ing-id2')
 const ingredientForm = document.querySelector('.add-pantry-ingredient-form');
 const addIngBtn = document.querySelector('.add-ingredient-btn')
-const ingredientsSection = document.querySelector('.pantry-ingredients')
 
 // ***** Event Listeners ***** //
 window.addEventListener('load', getAllData);
@@ -132,15 +131,15 @@ const addNewIngredient = (dataType, newIngredient) => {
  }
 
  getAllData(); //from fetch all data function 
- const addIngredientToPage = ingredients => {
-  selectedRecipe.getIngredientNames().forEach(ingredient => {
-    addIngredientsToPage(ingredient);
-   });
- }
+//  const addIngredientToPage = ingredients => {
+//   selectedRecipe.getIngredientNames().forEach(ingredient => {
+//     addIngredientsToPage(ingredient);
+//    });
+//  }
  
- const addIngredientsToPage = ingredient => {
-  ingredientsSection.innerHTML += `<p>${ingredient.name}</p>`;
- }
+//  const addIngredientsToPage = ingredient => {
+//   ingredientsSection.innerHTML += `<p>${ingredient.name}</p>`;
+//  }
  
 
 // ~~~~~~~~~~~~~~~~~~Add Ingredient to Page START~~~~~~~~~~~~~~~~~
@@ -447,12 +446,12 @@ function removeFromFavorites(event) {
 }
 
 function displayPantryIngredients() {
-  userItemQuantities.innerHTML = ''
-  userItemName.innerHTML = ''
+  userPantryContainer.innerHTML = ''
+  // userItemName.innerHTML = ''
   let pantryIngredients = user.pantry.getIngredientDetails(ingredientData)
   pantryIngredients.forEach(pantryIngredient => {
-    userItemQuantities.innerHTML += `<p class = 'ingredient-quantities'> ${pantryIngredient.amount}</p>`
-    userItemName.innerHTML += `<p class = 'recipe-ingredients'> ${pantryIngredient.name}</p>`
+    userPantryContainer.innerHTML += `<p class='pantry-items'> ${pantryIngredient.amount} -- ${pantryIngredient.name}</p>`
+    // userItemName.innerHTML += `<p class='pantry-names'> ${pantryIngredient.name}</p>`
   })
 }
 function convertIngNameToId(name) {

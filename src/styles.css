@@ -493,7 +493,7 @@ li {
 .main-favorite-container {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   background-image: linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)), url("../dist/anyonecancook-logo.svg");
   background-repeat: no-repeat;
   background-position: center;
@@ -502,7 +502,7 @@ li {
   width: 100%;
 }
 
-.main-favorite-container{
+/* .main-favorite-container{
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -512,24 +512,25 @@ li {
   align-items: center;
   height: 100%;
   width: 100%;
-}
+} */
 
 .favorite-recipe-container,
 .user-info-pantry-container{
   display: flex;
   flex-direction: column;
-  width: 90%;
-  margin-top: 3%;
+  width: 95%;
+  margin-top: 1%;
   border: 1px solid black;
+  border: 1px solid red;
 }
 
 .user-info-pantry-container {
   display: flex;
-  height: 200px;
+  height: 250px;
 }
 
 .favorite-recipe-container {
-  height: 60%;
+  height: 450px;
 }
 
 .favorite-recipe-icons {
@@ -624,27 +625,33 @@ li {
   margin: 0%;
   border: 1px solid blue;
 }
-
+/* 
 .pantry-ingredient-wrapper {
   display: flex;
   align-self: center;
   flex-wrap: wrap;
   height: 80%;
   width: 95%;
-  border: 1px solid blue;
+  border: 1px solid rgb(255, 0, 191);
+} */
+
+.pantry-items {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0;
+  padding: 0;
+  font-size: 1em;
 }
 
  .pantry-ingredients{
-  height: 80%;
-  width: 100%;
-  font-size: 12px;
-  display: grid;
-  grid-template-columns: 30% 50% 20%;
-  grid-template-rows: 20%;
-  margin: 0;
-  padding: 0;
-  border: 1px solid blue;
-  overflow-y: scroll;
+  display: flex;
+  flex-direction: column;
+  height: 75%;
+  width: 98%;
+  margin: 1px 10px 5px 10px;
+  flex-wrap: wrap;
+  border: 1px solid rgb(3, 220, 35);
+  overflow: scroll;
 }
 
 /* ~~~~~~~~~~~~~~~~~~~add ingredient form~~~~~~~~~~~ */

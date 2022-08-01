@@ -33,8 +33,8 @@ The user can also view the pantry ingredients and amounts they currently have. T
 
 ## Setup
 1. This project fetches data from an API so you will need to begin by cloning down the API and running it.
-Clone the API by running git clone git@github.com:turingschool/What-s-cookin--starter-kit-API.git
-2.CD into that directory, run npm install and then npm start. You should see “What's cookin-starter-kit API is now running on http://localhost:3001 !”
+Clone the API by running `git clone git@github.com:turingschool/What-s-cookin--starter-kit-API.git`
+2. CD into that directory, run npm install and then npm start. You should see “What's cookin-starter-kit API is now running on http://localhost:3001 !”
 Open a NEW terminal tab and cd somewhere outside of the API repo you just cloned. Do not close the tab that is running the API.
 3. Clone a copy of this repo to your machine by running git clone `https://github.com/tfettig22/whats-cookin-group-project`. Add an optional argument after the repo url when cloning. The command should look like this: git clone [remote-address] [what you want to name the repo].
 4. Once you have cloned the repo, change into that directory, run `npm install` and then `npm start`. You should see “Project is running at http://localhost:8080/"

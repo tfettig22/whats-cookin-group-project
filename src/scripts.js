@@ -54,6 +54,7 @@ const addIngBtn = document.querySelector('.add-ingredient-btn');
 const goToFormButton = document.querySelector('.go-to-form-button');
 const userPantryIngredients = document.querySelector('.user-info-pantry-container');
 const ingIdInput = document.querySelector('.ingredient-id-input');
+const pantryTitle = document.querySelector('.user-pantry-title');
 
 // ***** Event Listeners ***** //
 window.addEventListener('load', getAllData);
@@ -269,6 +270,9 @@ function viewRecipeFromIcon(event) {
   if(event.target.classList.contains('remove-from-favorites-btn')) {
     removeFromFavorites(event);
   }
+  if(event.target.classList.contains('cook-me-btn')) {
+    cookRecipe(event);
+  }
 }
 
 function viewRecipesHelperFunction() {
@@ -458,13 +462,12 @@ function removeFromFavorites(event) {
 
 function displayPantryIngredients() {
   userPantryContainer.innerHTML = ''
-  // userItemName.innerHTML = ''
   let pantryIngredients = user.pantry.getIngredientDetails(ingredientData)
   pantryIngredients.forEach(pantryIngredient => {
     userPantryContainer.innerHTML += `<p class='pantry-items'> ${pantryIngredient.amount} -- ${pantryIngredient.name}</p>`
-    // userItemName.innerHTML += `<p class='pantry-names'> ${pantryIngredient.name}</p>`
   })
 }
+
 function convertIngNameToId(name) {
   ingredientData.forEach(ing => {
     if (ing.name === name) {
@@ -486,3 +489,38 @@ function goToFormView() {
   show(ingredientForm)
 }
   
+function cookRecipe(event) {
+  let selectedRecipe;
+  allRecipes.forEach(recipe => {
+    if((parseInt(event.target.id)) === recipe.id) {
+      selectedRecipe = recipe;
+      console.log(selectedRecipe)
+    }
+  })
+  console.log('cancookRecipe', user.pantry.checkIfUserCanCookRecipe(selectedRecipe) )  
+   if(!user.pantry.checkIfUserCanCookRecipe(selectedRecipe)) {
+      displayMissingIngredients(selectedRecipe);
+   } else {
+      user.pantry.cookRecipe(recipe)
+      displayUpdatedPantry();
+   }
+}
+
+function displayMissingIngredients(selectedRecipe) {
+  pantryTitle.innerHTML = `<p>Oops, these ingredients still needed!</p>`
+  userPantryContainer.innerHTML = ''
+  let missingIngredients = user.pantry.getMissingIngredients(selectedRecipe, ingredientData)
+  missingIngredients.forEach(pantryIngredient => {
+    userPantryContainer.innerHTML += `<p class='pantry-items'>${pantryIngredient.amount} -- ${pantryIngredient.name}</p>`
+  })
+}
+
+//This is just copied from above and needs to be reworked to display the updated pantry with amounts removed if user can cook recipe
+// function displayUpdatedPantry(selectedRecipe) {
+//   pantryTitle.innerHTML = `<p>Your Pantry is Updated!</p>`
+//   userPantryContainer.innerHTML = ''
+//   let missingIngredients = user.pantry.getMissingIngredients(selectedRecipe, ingredientData)
+//   missingIngredients.forEach(pantryIngredient => {
+//     userPantryContainer.innerHTML += `<p class='pantry-items'>${pantryIngredient.amount} -- ${pantryIngredient.name}</p>`
+//   })
+// }

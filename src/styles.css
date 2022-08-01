@@ -524,6 +524,7 @@ li {
 .user-info-pantry-container{
   display: flex;
   flex-direction: column;
+  justify-content: center;
   width: 95%;
   margin-top: 1%;
   border: 1px solid black;
@@ -537,7 +538,7 @@ li {
 }
 
 .favorite-recipe-container {
-  height: 450px;
+  height: 375px;
 }
 
 .favorite-recipe-icons {
@@ -567,25 +568,11 @@ li {
   display: flex;
   flex-direction: column;
   justify-self: center;
-  height: 290px;
+  height: 275px;
   width: 200px;
   border-radius: 10px;
   margin-left: 1%;
   border: 1px solid black;
-}
-
-.favorite-recipe-images {
-  display: flex;
-  justify-self: center;
-  align-self: center;
-  height: 175px;
-  width: 175px;
-  border-radius: 10px;
-  margin-top: 20px;
-  margin-left: 10px;
-  margin-right: 10px;
-  cursor: pointer;
-  margin-bottom: 1%;
 }
 
 .icon-text {

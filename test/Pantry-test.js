@@ -81,32 +81,17 @@ describe('Pantry', () => {
     });
 
     it('should be told what ingredients are still needed for a recipe', () => {
-      expect(pantry1.getMissingIngredients(recipe1)).to.deep.equal([]);
-      expect(pantry1.getMissingIngredients(recipe2)).to.deep.equal([
-        { id: 1009016, amount: 1.5 },
-        { id: 9003, amount: 2 },
-        { id: 20027, amount: 1 }
+      expect(pantry1.getMissingIngredients(recipe1, testIngData)).to.deep.equal([]);
+      expect(pantry1.getMissingIngredients(recipe2, testIngData)).to.deep.equal([
+        { id: 1009016, name: 'apple cider', amount: 1.5 },
+        { id: 9003, name: 'apple', amount: 2 },
+        { id: 20027, name: 'corn starch', amount: 1 }
       ]);
     });
 
     it('should return no ingredients if user pantry has all ingredients needed', () => {
       expect(pantry1.getMissingIngredients(recipe1)).to.deep.equal([]);
     });  
-
-    it('should have a method to determine the amounts of ingredients that the user is missing', () => {
-      expect(pantry2.getIngredientAmountsNeeded(recipe1)).to.deep.equal([
-        {id: 20081, amount: 0.5 }
-      ]);
-      expect(pantry2.getIngredientAmountsNeeded(recipe3)).to.deep.equal([
-        {id: 20081, amount: 5.5 },
-        {id: 18372, amount: 2 },
-        {id: 1123, amount: 2 }
-      ]);
-    });
-
-    it('should return no missing amounts if user has all required ingredients', () => {
-      expect(pantry1.getIngredientAmountsNeeded(recipe1)).to.deep.equal([]);
-    });
 
     it('should have a method to cook a recipe and remove the required ingredients from the user\'s pantry', () => {
       pantry1.cookRecipe(recipe1);
@@ -117,10 +102,6 @@ describe('Pantry', () => {
         { ingredient: 18372, amount: 8.5 },
         { ingredient: 1123, amount: 7 }
       ]);
-    });
-
-    it('should not be able to cook a recipe if the user does not have all the required ingredients', () => {
-      expect(pantry1.cookRecipe(recipe2)).to.equal('Cannot cook this recipe yet, you are missing some ingredients.');
     });
 
     it('should have a method to add a certain amount of an ingredient to the pantry by id', () => {

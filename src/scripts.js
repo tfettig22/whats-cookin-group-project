@@ -55,7 +55,7 @@ const ingIdInput = document.querySelector('.ingredient-id-input');
 const ingQInput = document.querySelector('.ingredient-quantity')
 const pantryTitle = document.querySelector('.user-pantry-title');
 const errorMsg = document.querySelector('.post-error-message');
-const refreshPantry = document.querySelector('.refresh-pantry')
+const refreshPantry = document.querySelector('.refresh-pantry');
 
 // ***** Event Listeners ***** //
 window.addEventListener('load', getAllData);
@@ -92,7 +92,7 @@ removeFiltersBtn.addEventListener('click', displayAllNames);
 convertToId.addEventListener('click', getIngredientId);
 goToFormButton.addEventListener('click', goToFormView);
 addIngBtn.addEventListener('click', makeNewIngredientToPost);
-refreshPantry.addEventListener('click', refreshPantryList)
+refreshPantry.addEventListener('click', refreshPantryList);
 
 // ***** Global Variables ***** //
 let ingredientData;
@@ -119,8 +119,8 @@ getAllData().then(responses => {
   displayAllNames();
 });
 
-
 //~~~~~~~~~Post Request~~~~~~~~~~~~~~
+
 const addNewIngredient = (newIngredient) => {
   fetch('http://localhost:3001/api/v1/users', {
     method: "POST",
@@ -129,23 +129,23 @@ const addNewIngredient = (newIngredient) => {
   })
   .then(response => {
     if(!response.ok) {
-      throw new Error(response.statusText)
+      throw new Error(response.statusText);
     } else {
-      return response.json()
+      return response.json();
     }   
   })
   .then(ingredient => {
-    user.pantry.addIngredient(newIngredient['ingredientID'], newIngredient['ingredientModification'])
-    getAllData()
-    showFavoritesPage()
+    user.pantry.addIngredient(newIngredient['ingredientID'], newIngredient['ingredientModification']);
+    getAllData();
+    showFavoritesPage();
   })
   .catch(err => {
-    errorMsg.innerText = err.message
+    errorMsg.innerText = err.message;
   });
  }
 
 const makeNewIngredientToPost = (event) => {
-  event.preventDefault()
+  event.preventDefault();
   newIngredientToPost = { userID: user.id,
                           ingredientID: parseFloat(ingIdInput.value),
                           ingredientModification: parseFloat(ingQInput.value) }
@@ -229,7 +229,7 @@ function showFavoritesPage() {
   hide(homePage);
   hide(searchContainer);
   hide(recipePage);
-  hide(ingredientForm)
+  hide(ingredientForm);
   show(userPantryIngredients);
   show(favoritesPage);
   show(searchFavoritesContainer);
@@ -242,7 +242,7 @@ function showFavoritesPage() {
 function viewRecipe(event) {
   displayRecipeByClickTag(event);
   if (event.target.classList.contains('recipes-list')) {
-    selectedRecipeName = event.target.innerText
+    selectedRecipeName = event.target.innerText;
     selectedRecipe = allRecipes.filter(recipe => selectedRecipeName === recipe.name)[0];
     viewRecipesHelperFunction();
   }
@@ -502,5 +502,5 @@ function displayMissingIngredients(selectedRecipe) {
 }
 
 function refreshPantryList() {
-  showFavoritesPage()
+  showFavoritesPage();
 }

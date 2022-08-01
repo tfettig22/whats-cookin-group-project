@@ -12,7 +12,6 @@ class RecipeRepository {
     let filteredRecipes = this.recipeData.filter(recipe => recipe.name.includes(name));
     return filteredRecipes;
   }
-  // try reduce later for the extention using multiple parameters? Maybe use ternary operator
 
 }
 

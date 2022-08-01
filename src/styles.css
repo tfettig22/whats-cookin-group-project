@@ -508,18 +508,6 @@ li {
   width: 100%;
 }
 
-/* .main-favorite-container{
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  background-image: linear-gradient(rgba(255,255,255,0.9), rgba(255,255,255,0.9)), url("../dist/anyonecancook-logo.svg");
-  background-repeat: no-repeat;
-  background-position: center;
-  align-items: center;
-  height: 100%;
-  width: 100%;
-} */
-
 .favorite-recipe-container,
 .user-info-pantry-container{
   display: flex;
@@ -528,7 +516,6 @@ li {
   width: 95%;
   margin-top: 1%;
   border: 1px solid black;
-  border: 1px solid red;
   border-radius: 10px;
 }
 
@@ -645,7 +632,8 @@ li {
   overflow: scroll;
 }
 
-.go-to-form-button {
+.go-to-form-button,
+.refresh-pantry {
   margin: 5px 0px 0px 10px;
 }
 
@@ -664,7 +652,6 @@ li {
   border: 1px solid grey;
   filter: drop-shadow(1px 2px 2px grey)
 }
-
 
 /* ~~~~~~~~~~~~~~~~~~aux~~~~~~~~~~~~~~~~~~~~~~ */
 .hidden {

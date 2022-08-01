@@ -44,8 +44,6 @@ const nameRadioBtn = document.querySelector('.name-search');
 const removeFiltersBtn = document.querySelector('.remove-filters-button');
 const tagRadioBtn = document.querySelector('.tag-search');
 const sideBarTitle = document.querySelector('.side-bar-title-wrapper');
-// const userItemQuantities = document.querySelector('.user-item-quantities');
-// const userItemName = document.querySelector('.pantry-item-name');
 const userPantryContainer = document.querySelector('.pantry-ingredients');
 const convertToId = document.querySelector('.convert-to-id');
 const getIngId2 = document.querySelector('.get-ing-id2');
@@ -54,7 +52,10 @@ const addIngBtn = document.querySelector('.add-ingredient-btn');
 const goToFormButton = document.querySelector('.go-to-form-button');
 const userPantryIngredients = document.querySelector('.user-info-pantry-container');
 const ingIdInput = document.querySelector('.ingredient-id-input');
+const ingQInput = document.querySelector('.ingredient-quantity')
 const pantryTitle = document.querySelector('.user-pantry-title');
+const errorMsg = document.querySelector('.post-error-message');
+const refreshPantry = document.querySelector('.refresh-pantry');
 
 // ***** Event Listeners ***** //
 window.addEventListener('load', getAllData);
@@ -90,6 +91,8 @@ removeFavFiltersBtn.addEventListener('click', showFavoritesPage);
 removeFiltersBtn.addEventListener('click', displayAllNames);
 convertToId.addEventListener('click', getIngredientId);
 goToFormButton.addEventListener('click', goToFormView);
+addIngBtn.addEventListener('click', makeNewIngredientToPost);
+refreshPantry.addEventListener('click', refreshPantryList);
 
 // ***** Global Variables ***** //
 let ingredientData;
@@ -101,6 +104,7 @@ let selectedRecipeIcon;
 let selectedRecipe;
 let recipeRepository;
 let allRecipes;
+let newIngredientToPost;
 
 // ***** Functions ***** //
 
@@ -115,56 +119,38 @@ getAllData().then(responses => {
   displayAllNames();
 });
 
-
 //~~~~~~~~~Post Request~~~~~~~~~~~~~~
-const addNewIngredient = (dataType, newIngredient) => {
-  fetch(`http://localhost:3001/api/v1/${dataType}`, {
+
+const addNewIngredient = (newIngredient) => {
+  fetch('http://localhost:3001/api/v1/users', {
     method: "POST",
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(newIngredient)
   })
   .then(response => {
-    console.log("Hello,POST, response" .json())
-    if(!response.ok){
-      throw new Error(response.statusText)
-     } else {
-       return response.json()
-     }   
-   })
-   .then(ingredient => addIngredientToPage(ingredient))
-   .catch(err => err  (alert(`MUST FILL OUT ALL BOXES!!!`)))// What can be done better here?
+    if(!response.ok) {
+      throw new Error(response.statusText);
+    } else {
+      return response.json();
+    }   
+  })
+  .then(ingredient => {
+    user.pantry.addIngredient(newIngredient['ingredientID'], newIngredient['ingredientModification']);
+    getAllData();
+    showFavoritesPage();
+  })
+  .catch(err => {
+    errorMsg.innerText = err.message;
+  });
  }
 
- getAllData(); 
- 
- //from fetch all data function 
-//  const addIngredientToPage = ingredients => {
-//   selectedRecipe.getIngredientNames().forEach(ingredient => {
-//     addIngredientsToPage(ingredient);
-//    });
-//  }
- 
-//  const addIngredientsToPage = ingredient => {
-//   ingredientsSection.innerHTML += `<p>${ingredient.name}</p>`;
-//  }
- 
-
-// ~~~~~~~~~~~~~~~~~~Add Ingredient to Page START~~~~~~~~~~~~~~~~~
-// ingredientForm.addEventListener('addIngBtn', (e) => {
-//   e.preventDefault();
-//   const formData = new FormData(e.target);
-//   const newIngredient = {
-//     id: ingredientsSection.childElementCount + 1,
-//     name: formData.get('ingredient_name'),
-//     quantity: formData.get('ingredient_quantity'),
-//   };
-//   addNewIngredient(newIngredient);
-//   e.target.reset();
-// });
-
-// ~~~~~~~~~~~~~~~~~~Add Ingredient to Page END ~~~~~~~~~~~~~~~~~
-
-
+function makeNewIngredientToPost(event) {
+  event.preventDefault();
+  newIngredientToPost = { userID: user.id,
+                          ingredientID: parseFloat(ingIdInput.value),
+                          ingredientModification: parseFloat(ingQInput.value) }
+  addNewIngredient(newIngredientToPost);
+}
 
 function getRandomIndex(array) {
   return Math.floor(Math.random() * array.length);
@@ -189,7 +175,7 @@ function changeToUpperCase(data) {
       return word.charAt(0).toUpperCase() + word.slice(1);
     })
     recipe.name = capitalizedWords.join(' ');
-  })
+  });
 }
 
 function updateMainPageRecipeIcons() {
@@ -225,7 +211,7 @@ function displayAllNames() {
     let capitalizedWords = wordsInName.map(word => {
       return word.charAt(0).toUpperCase() + word.slice(1);
     })
-    recipe.name = capitalizedWords.join(' ')
+    recipe.name = capitalizedWords.join(' ');
   })
   displayRecipeNames(recipeRepository.recipeData);
   show(sideBarTitle);
@@ -243,19 +229,20 @@ function showFavoritesPage() {
   hide(homePage);
   hide(searchContainer);
   hide(recipePage);
-  hide(ingredientForm)
-  show(userPantryIngredients)
+  hide(ingredientForm);
+  show(userPantryIngredients);
   show(favoritesPage);
   show(searchFavoritesContainer);
   showFavoriteRecipeImages(user.recipesToCook);
   show(userPantryContainer);
   displayPantryIngredients();
+  pantryTitle.innerText = 'User\'s Pantry Ingredients';
 }
 
 function viewRecipe(event) {
   displayRecipeByClickTag(event);
   if (event.target.classList.contains('recipes-list')) {
-    selectedRecipeName = event.target.innerText
+    selectedRecipeName = event.target.innerText;
     selectedRecipe = allRecipes.filter(recipe => selectedRecipeName === recipe.name)[0];
     viewRecipesHelperFunction();
   }
@@ -346,7 +333,7 @@ function filterRecipeByTag(tag) {
   displayRecipeNames(filteredRecipes);
   show(sideBarTitle);
   if (filteredRecipes.length === 0) {
-    hide(sideBarTitle)
+    hide(sideBarTitle);
     recipeSidebarList.innerHTML = 
     `<p class="tag-names">No recipes found, try one of these tags: </p> 
      <ul> 
@@ -380,7 +367,7 @@ function filterRecipeByName(name) {
   let input = name.toLowerCase();
   recipeRepository.recipeData.forEach(recipe => {
     recipe.name = recipe.name.toLowerCase();
-  })
+  });
   let filteredRecipes = recipeRepository.filterByName(input);
   changeToUpperCase(filteredRecipes);
   displayRecipeNames(filteredRecipes);
@@ -461,32 +448,32 @@ function removeFromFavorites(event) {
 }
 
 function displayPantryIngredients() {
-  userPantryContainer.innerHTML = ''
-  let pantryIngredients = user.pantry.getIngredientDetails(ingredientData)
+  userPantryContainer.innerHTML = '';
+  let pantryIngredients = user.pantry.getIngredientDetails(ingredientData);
   pantryIngredients.forEach(pantryIngredient => {
-    userPantryContainer.innerHTML += `<p class='pantry-items'> ${pantryIngredient.amount} -- ${pantryIngredient.name}</p>`
-  })
+    userPantryContainer.innerHTML += `<p class='pantry-items'> ${pantryIngredient.amount} -- ${pantryIngredient.name}</p>`;
+  });
 }
 
 function convertIngNameToId(name) {
   ingredientData.forEach(ing => {
     if (ing.name === name) {
-      ingIdInput.value = ing.id
+      ingIdInput.value = ing.id;
     }
   })
   if (ingredientData.every(ing => ing.name !== name)) {
-    getIngId2.value = 'Ingredient not found'
+    getIngId2.value = 'Ingredient not found';
   }
 }
 
 function getIngredientId(event) {
-  event.preventDefault(event)
-  convertIngNameToId(getIngId2.value)
+  event.preventDefault(event);
+  convertIngNameToId(getIngId2.value);
 }
 
 function goToFormView() {
-  hide(userPantryIngredients)
-  show(ingredientForm)
+  hide(userPantryIngredients);
+  show(ingredientForm);
 }
   
 function cookRecipe(event) {
@@ -494,33 +481,26 @@ function cookRecipe(event) {
   allRecipes.forEach(recipe => {
     if((parseInt(event.target.id)) === recipe.id) {
       selectedRecipe = recipe;
-      console.log(selectedRecipe)
     }
   })
-  console.log('cancookRecipe', user.pantry.checkIfUserCanCookRecipe(selectedRecipe) )  
-   if(!user.pantry.checkIfUserCanCookRecipe(selectedRecipe)) {
+    if (!user.pantry.checkIfUserCanCookRecipe(selectedRecipe)) {
       displayMissingIngredients(selectedRecipe);
    } else {
-      user.pantry.cookRecipe(recipe)
-      displayUpdatedPantry();
+      user.pantry.cookRecipe(selectedRecipe);
+      pantryTitle.innerText = 'Pantry amounts updated';
+      displayPantryIngredients();
    }
 }
 
 function displayMissingIngredients(selectedRecipe) {
-  pantryTitle.innerHTML = `<p>Oops, these ingredients still needed!</p>`
-  userPantryContainer.innerHTML = ''
-  let missingIngredients = user.pantry.getMissingIngredients(selectedRecipe, ingredientData)
+  pantryTitle.innerText = 'Oops, these ingredients are still needed:';
+  userPantryContainer.innerHTML = '';
+  let missingIngredients = user.pantry.getMissingIngredients(selectedRecipe, ingredientData);
   missingIngredients.forEach(pantryIngredient => {
-    userPantryContainer.innerHTML += `<p class='pantry-items'>${pantryIngredient.amount} -- ${pantryIngredient.name}</p>`
+    userPantryContainer.innerHTML += `<p class='pantry-items'>${pantryIngredient.amount} -- ${pantryIngredient.name}</p>`;
   })
 }
 
-//This is just copied from above and needs to be reworked to display the updated pantry with amounts removed if user can cook recipe
-// function displayUpdatedPantry(selectedRecipe) {
-//   pantryTitle.innerHTML = `<p>Your Pantry is Updated!</p>`
-//   userPantryContainer.innerHTML = ''
-//   let missingIngredients = user.pantry.getMissingIngredients(selectedRecipe, ingredientData)
-//   missingIngredients.forEach(pantryIngredient => {
-//     userPantryContainer.innerHTML += `<p class='pantry-items'>${pantryIngredient.amount} -- ${pantryIngredient.name}</p>`
-//   })
-// }
+function refreshPantryList() {
+  showFavoritesPage();
+}

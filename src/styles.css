@@ -518,9 +518,12 @@ li {
 .user-info-pantry-container{
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
   width: 90%;
   margin-top: 3%;
   border: 1px solid black;
+  border-radius: 20px;
 }
 
 .user-info-pantry-container {
@@ -614,7 +617,8 @@ li {
 }
 
 .favorite-recipe-title,
-.user-pantry-title {
+.user-pantry-title,
+.add-ing-title {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -622,7 +626,7 @@ li {
   font-family: 'Edu TAS Beginner';
   font-size: 25pt;
   margin: 0%;
-  border: 1px solid blue;
+  /* border: 1px solid blue; */
 }
 
 .pantry-ingredient-wrapper {
@@ -631,6 +635,7 @@ li {
   flex-wrap: wrap;
   height: 80%;
   width: 95%;
+  border-radius: 20px;
   border: 1px solid blue;
 }
 
@@ -658,8 +663,10 @@ li {
   background-color:(linear-gradient(#222323, #8d8f90));
   padding: 2px 20px 20px 20px;
   margin: 0;
-  width: 50%;
-  border: 1px solid blue;
+  height: 150px;
+  width: 200px;
+  border: 1px solid grey;
+  filter: drop-shadow(1px 2px 2px grey)
 }
 
 

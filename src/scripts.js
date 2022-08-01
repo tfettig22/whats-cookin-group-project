@@ -131,16 +131,18 @@ const addNewIngredient = (dataType, newIngredient) => {
    .catch(err => err  (alert(`MUST FILL OUT ALL BOXES!!!`)))// What can be done better here?
  }
 
- getAllData(); //from fetch all data function 
- const addIngredientToPage = ingredients => {
-  selectedRecipe.getIngredientNames().forEach(ingredient => {
-    addIngredientsToPage(ingredient);
-   });
- }
+ getAllData(); 
  
- const addIngredientsToPage = ingredient => {
-  ingredientsSection.innerHTML += `<p>${ingredient.name}</p>`;
- }
+ //from fetch all data function 
+//  const addIngredientToPage = ingredients => {
+//   selectedRecipe.getIngredientNames().forEach(ingredient => {
+//     addIngredientsToPage(ingredient);
+//    });
+//  }
+ 
+//  const addIngredientsToPage = ingredient => {
+//   ingredientsSection.innerHTML += `<p>${ingredient.name}</p>`;
+//  }
  
 
 // ~~~~~~~~~~~~~~~~~~Add Ingredient to Page START~~~~~~~~~~~~~~~~~

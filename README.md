@@ -14,7 +14,7 @@
 ## Introduction
 'Anyone Can Cook!' is an interactive website similar to Epicurious, AllRecipes, or NYTimes cooking. A user can browse recipes and save their favorites for later. Users can browse recipes by tag (course) or search for recipes by name. If a photo or name catches their eye, they can click on the recipe to see more details about the recipe such as ingredients, amounts, estimated cost to make, and step by step instructions. On the recipe page, they even have the option to add it to their Favorites aka future list of recipes to cook! The user can also search on their Favorites page by recipe name or by tags as well.
 
-The user can also view the pantry ingredients and amounts they currently have. They can also specify a recipe to cook by clicking "cook me!" which will compare if the user has enough ingredients to cook it and then will return which ingredients are still needed if they don't have enough. Once the user goes out shopping, they can also manually add ingredients and their amounts to their pantry for future cooking fun!
+The user can also view the pantry ingredients and amounts they currently have. They can also specify a recipe to cook by clicking "cook me!" which will compare if the user has enough ingredients to cook it. If the user has enough ingredients, it will return the updated pantry with relevant ingredient amounts subtracted for that recipe. If the user does not have all the ingredients for the recipe, it will return which ingredients and amounts are still needed. Once the user goes out shopping, they can also manually add ingredients and their amounts to their pantry for future cooking fun!
 
 ## Links
 - [Project spec](https://frontend.turing.edu/projects/whats-cookin-part-one.html)

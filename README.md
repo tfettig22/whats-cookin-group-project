@@ -56,8 +56,10 @@ Open a NEW terminal tab and cd somewhere outside of the API repo you just cloned
 
 - User can also view the ingredients and amounts in their pantry or manually add ingredients to their pantry. 
 
+![2022-07-17 18 43 51](https://media.giphy.com/media/ZVUkHjnwAU5U3sp8s6/giphy.gif)
 - User can also specify a recipe to cook and the required ingredients to cook that recipe are compared to the ingredients currently in the pantry. If the ingredients are missing or not enough, the page will display which ingredients the user needs to go shopping for first. 
 
+![2022-07-17 18 43 51](https://media.giphy.com/media/dQisqfNg6SayM7JycN/giphy.gif)
 ## Future Additions
 - Add login screen for user. 
 - Increase search functionality to also be able to search by ingredient.

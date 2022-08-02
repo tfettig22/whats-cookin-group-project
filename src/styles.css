@@ -162,6 +162,14 @@ li {
   filter: drop-shadow(5px 10px 3px black);
 }
 
+.easter-egg{
+  display: flex;
+  justify-self: flex-start;
+  align-self: flex-end;
+  height:30px;
+  width: 30px;
+  background-image: url("../dist/cook-me.svg");
+}
 /* ~~~~~~~~~~~~~~~home page~~~~~~~~~~~~~~~~~~~ */
 .h1-wrapper {
   display: flex;

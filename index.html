@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr"></html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Edu+TAS+Beginner&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Edu+TAS+Beginner&family=Raleway:wght@300&display=swap" rel="stylesheet">
+    <title>ANYONE CAN COOK</title>
+  </head>
+  <body>
+    <section class="main-body">
+      <header class="header-container" id ="headerContainer">
+        <section class="header-logo-container">
+          <img class="logo-img" id="LogoImg" src="./anyonecancook-logo.svg" alt="anyone can cook logo">
+        </section>
+        <section class="h1-wrapper">
+          <h1>ANYONE CAN COOK!</h1>
+        </section>
+        <section class ="header-icons-container">
+          <img class="home-img" id="homeImg" src="./home-icon-svg.svg" tabindex="0" alt="home page button">
+          <img class="fav-img" id="favImg" src="./favorite-svg.svg" tabindex="0" alt="favorites page button">
+        </section>
+      </header>
+      <section class="search-container" id="searchContainer">
+        <section class="search-header" id="searchHeader">Find a Recipe </section>
+        <section class="search-bar" id="searchBar">
+          <form>
+            <label for="query"><input type="search" class="search-input" id="query" name="q"
+              placeholder="Search recipes..."></label>
+            <button type="submit" class="search-button">🔎</button>
+          </form>
+        </section>
+        <section class="radio-wrapper">
+          <label for="tagSearch"><input class="tag-search" type="radio" name="searchMode" id="tagSearch"
+          value="tag">Search by Tag</input></label>
+          <label for="nameSearch"><input class="name-search" type="radio" name="searchMode" id="nameSearch"
+          value="name">Search by Name</input></label>
+          <button class="remove-filters-button">Remove Filters</button>
+        </section>
+      </section>
+      <section class="main-page-container" id="mainPageContainer">
+        <section class="feature-container" id="featureContainer">
+          <img class="random-feature-img" src="" alt="featured recipe image">
+          <section class="meal-box" id="mealBox">
+            <h2 class="user-welcome-message">Welcome User, ready to cook?</h2>
+          </section>
+        </section>
+        <div class="recipe-icon-container">
+          <div class="recipe-icons" id="recipeIcon1">
+            <img class="icon-1-img icon" src="" alt="miniature featured recipe icon 1">
+          </div>
+          <div class="recipe-icons" id="recipeIcons">
+            <img class="icon-2-img icon" src="" alt="miniature featured recipe icon 2">
+          </div>
+          <div class="recipe-icons" id="recipeIcon3">
+            <img class="icon-3-img icon" src="" alt="miniature featured recipe icon 3">
+          </div>
+          <div class="recipe-icons" id="recipeIcon4">
+            <img class="icon-4-img icon" src="" alt="miniature featured recipe icon 4">
+          </div>
+          <div class="recipe-icons" id="recipeIcon5">
+            <img class="icon-5-img icon" src="" alt="miniature featured recipe icon 5">
+          </div>
+          <div class="recipe-icons" id="recipeIcon6">
+            <img class="icon-6-img icon" src="" alt="miniature featured recipe icon 6">
+          </div>
+        </div>
+        <div class="easter-egg"></div>
+      </section>
+      <section class ="recipe-container hidden" id="recipeContainer">
+        <section class="recipe-img-price-container">
+          <section class="recipe-container-upper-wrapper">
+            <img class="selected-recipe-img" src="" alt="selected recipe image">
+          </section>
+          <section class="recipe-container-lower-wrapper">
+            <section class="ingredient-box" id="ingredientBox">
+              <section class="ingredient-title-wrapper">
+                <p class="ingredient-title">Ingredients</p>
+              </section>
+              <section class="ingredient-boxes-container">
+                <section class="quantities">1</section>
+                <section class="names">2</section>
+                <section class="prices">3</section>
+              </section>
+              <p class="total-price-box" id="priceBox">innerHTML price list</p>
+            </section>
+          </section>
+        </section>
+        <article class="recipe-description-box" id="recipeRSideBox">
+          <p class="recipe-title-box" id="recipeTitleBox">Recipe title</p>
+          <section class="favorite-button-container">
+            <button class="add-favorite-button">❤️</button>
+            <p class="add-favorites-text">Add to Favorites</p>
+          </section>
+          <p class="recipe-info-box" id="recipeBox"></p>
+        </article>
+      </section>
+      <section class="search-favorite-container hidden" id="searchFavoriteContainer">
+        <section class="search-favorite-header" id="searchHeader">Search Favorites</section>
+        <section class="search-favorite-bar" id="searchFavoriteBar">
+          <form>
+            <label for="queryFav"><input type="search" class="search-favorite-input" id="queryFav" name="q2"
+            placeholder="Search recipes..."></label>
+            <button type="submit" class="favorite-search-button">🔎</button>
+          </form>
+        </section>
+        <section class="radio-wrapper">
+          <label for="tagSearchFav"><input class="tag-search-favorite" type="radio" name="searchMode" id="tagSearchFav"
+          value="tag">Search by Tag</input></label>
+          <label for="nameSearchFav"><input class="name-search-favorite" type="radio" name="searchMode" id="nameSearchFav"
+          value="name">Search by Name</input></label>
+          <button class="remove-filters-button-fav">Remove Filters</button>
+        </section>
+      </section>
+      <section class="main-favorite-container hidden" id="mainFavoriteContainer">
+        <section class="favorite-recipe-container" id="favoriteRecipeContainer">
+            <section class="favorite-recipe-title-wrapper">
+              <p class="favorite-recipe-title">Favorite Recipes</p>
+            </section>
+            <section class="fav-container-lower-wrapper"></section>
+        </section>
+        <section class="user-info-pantry-container" id="userInfoPantryContainer">
+          <section class="user-pantry-title-wrapper">
+            <p class="user-pantry-title">User's Pantry Ingredients</p>
+            <button class="go-to-form-button">Add Ingredient</button>
+            <button class="refresh-pantry">Refresh Pantry</button>
+          </section>
+          <section class="pantry-ingredients hidden"></section>
+        </section>
+        <form class="add-pantry-ingredient-form hidden" id="addIngredientForm">
+          <p class="add-ing-title"> Add Ingredient</p>
+          <label for="ingredient name">Ingredient Name:</label>
+          <input class= "get-ing-id2" type="text" id="ingName" name="ingredientName" value="">
+          <button class="convert-to-id">Convert to ID</button>
+          <label for="ingredient id">Ingredient ID:</label>
+          <input class="ingredient-id-input" type="text" id="IngredientId" name="ingredient_id">
+          <label for="ingredient quantity">Ingredient Qty:</label>
+          <input class="ingredient-quantity" type="number" id="IngredientQuantity" name="ingredient_quantity">
+          <button class="add-ingredient-btn" id="addIngBtn">Add to Pantry</button>
+          <p class="post-error-message"></p>
+        </form>
+      </section>
+    </section>
+    <aside class="home-recipe-sidebar" id="homeRecipeBar">
+      <section class="side-bar-title-wrapper">
+        <p class="side-bar-Recipe-title" is="sideTitle"> Recipes </p>
+      </section>
+      <section class="recipe-list-names">
+        <p class="list-recipes" id="allRecipes"> innerHTML Recipes</p>
+      </section>
+    </aside>
+  </body>
+  
+  <script src="bundle.js"></script>
+</html>

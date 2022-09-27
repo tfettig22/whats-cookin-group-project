@@ -201,7 +201,7 @@ function displayRecipeNames(recipes) {
   recipeSidebarList.innerHTML = '';
   const recipeNames = recipes.map(recipe => recipe.name);
   recipeNames.forEach(name => {
-    recipeSidebarList.innerHTML += `<p class="recipes-list" tabindex="0" role='button'>${name}</p>`;
+    recipeSidebarList.innerHTML += `<p class="recipes-list" tabindex=0 role='button'>${name}</p>`;
   });
 }
 
@@ -430,7 +430,7 @@ function showFavoriteRecipeImages(recipes) {
   `
   <section class="favorite-recipe-icons">
     <p class="icon-text">${recipe.name}</p>
-    <img class="favorite-recipe-images icon" src=${recipe.image} id=${recipe.id} tabindex=0>
+    <img class="favorite-recipe-images icon" src=${recipe.image} id=${recipe.id} tabindex="0">
     <section class= "button-container"> 
     <button class="cook-me-btn" id = ${recipe.id}>cook me!</button> 
     <button class="remove-from-favorites-btn" id=${recipe.id}>delete</button>

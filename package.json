@@ -2,7 +2,7 @@
   "name": "whats-cookin",
   "version": "1.0.0",
   "description": "Starter kit for Turing FE2 paired project",
-  "url": "git+https://github.com/forsethnico/whats-cooking-group-project.git",
+  "url": "git+https://github.com/forsethnico/whats-cookin-group-project.git",
   "homepage": "https://forsethnico.github.io/whats-cookin-group-project/",
   "main": "index.js",
   "scripts": {

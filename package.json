@@ -2,7 +2,6 @@
   "name": "whats-cookin",
   "version": "1.0.0",
   "description": "Starter kit for Turing FE2 paired project",
-  "url": "git+https://github.com/forsethnico/whats-cookin-group-project.git",
   "homepage": "https://forsethnico.github.io/whats-cookin-group-project/",
   "main": "index.js",
   "scripts": {
@@ -11,6 +10,9 @@
     "test": "mochapack 'test/**/*.js'",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d dist"
+  },
+  "repository": {
+    "url": "git+https://github.com/forsethnico/whats-cookin-group-project.git"
   },
   "author": "Turing School of Software and Design",
   "license": "MIT",
